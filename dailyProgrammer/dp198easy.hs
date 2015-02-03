@@ -15,8 +15,7 @@ printScore bullets@[aBullet,bBullet]
 
 explodeWords :: String -> String -> [WordBullet]
 explodeWords a b = [WordBullet a aRem, WordBullet b bRem]
-	where common = intersect a b
-	      [aRem,bRem] = map (flip (\\) common) [a,b]
+	where [aRem,bRem] = zipWith (\\) [a,b] [b,a]
 
 main = do
 	[a,b] <- words <$> getLine
